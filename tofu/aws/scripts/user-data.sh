@@ -7,8 +7,11 @@ yum upgrade -y
 # Installing dependencies
 yum install git nginx python3-pip -y
 
-# Cloning repository
-git clone https://github.com/lucasfacci/aws-django-sms-api.git
+# Going to the user home directory
+cd /home/ec2-user
+
+# Cloning repository as ec2-user (instead of root user)
+runuser -l ec2-user -c 'git clone https://github.com/lucasfacci/aws-django-sms-api.git'
 
 # Going to the root of the project
 cd aws-django-sms-api/django-sms-api/
