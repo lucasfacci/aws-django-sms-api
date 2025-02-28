@@ -1,6 +1,6 @@
 resource "aws_instance" "machine" {
   ami           = data.aws_ami.amazon_linux_2023.id
-  instance_type = "t2.small"
+  instance_type = "t2.micro"
 
   associate_public_ip_address = true
   key_name                    = aws_key_pair.machine_ssh.id
