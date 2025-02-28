@@ -10,13 +10,22 @@ resource "aws_security_group" "machine_sg" {
   )
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_ssh_from_ec2_instance_connect" {
+resource "aws_vpc_security_group_ingress_rule" "allow_inbound_http_access" {
   security_group_id = aws_security_group.machine_sg.id
 
-  cidr_ipv4   = "18.206.107.24/29"
-  from_port   = 22
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
   ip_protocol = "tcp"
-  to_port     = 22
+  to_port     = 80
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_inbound_https_access" {
+  security_group_id = aws_security_group.machine_sg.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 443
+  ip_protocol = "tcp"
+  to_port     = 443
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_outbound_http_access" {
