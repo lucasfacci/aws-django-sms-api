@@ -20,8 +20,8 @@ cd aws-django-sms-api/django-sms-api/
 pip install -r requirements.txt
 
 # Creating database and static folder
-python3 manage.py migrate
-python3 manage.py collectstatic
+runuser -l ec2-user -c 'cd aws-django-sms-api/django-sms-api && python3 manage.py migrate'
+runuser -l ec2-user -c 'cd aws-django-sms-api/django-sms-api && python3 manage.py collectstatic'
 
 # Creating Gunicorn service file
 cp ../tofu/aws/scripts/gunicorn.service /etc/systemd/system
